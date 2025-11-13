@@ -4,19 +4,23 @@
 > This setup demonstrates how a local AI runtime can integrate Filesystem, SQLite, GitHub, Playwright, and DuckDuckGo MCP servers to automate tasks through the Model Context Protocol (MCP).
 
 🧠 Architecture
-                 ┌────────────────────┐
-                 │   Ollama (Qwen)    │
-                 │ Local LLM Runtime  │
-                 └─────────┬──────────┘
-                           │
-                 [Model Context Protocol]
-                           │
-        ┌──────────┬──────────┬──────────┬──────────┐
-        │ Filesystem│ SQLite  │ GitHub   │ Playwright│
-        │ MCP       │ MCP     │ MCP      │ MCP       │
-        └───────────┴─────────┴──────────┴───────────┘
-                           │
-                  Logs and Local Context
+         ┌────────────────────┐
+         │   Ollama (Qwen)    │
+         │ Local LLM Runtime  │
+         └─────────┬──────────┘
+                   │
+         [Model Context Protocol]
+                   │
+ ┌──────────┬──────────┬──────────┬──────────┐
+ │ Filesystem│ SQLite  │ GitHub   │ Playwright│
+ │ MCP       │ MCP     │ MCP      │ MCP       │
+ └───────────┴─────────┴──────────┴───────────┘
+                   │
+          Logs and Local Context
+
+
+
+## 🚀 Overview
 
 
 ---
@@ -28,17 +32,18 @@ This project is a **hands-on demo** that connects:
 - 🧠 **Ollama (Qwen model)** — local LLM engine  
 - 🧩 **MCPHost** — the protocol orchestrator  
 - ⚙️ **MCP Servers** — external tools that provide capabilities such as:
-  - **Filesystem access**
-  - **SQLite database queries**
-  - **GitHub integration**
-  - **Playwright browser automation**
-  - **DuckDuckGo search**
+  - Filesystem access  
+  - SQLite database queries  
+  - GitHub integration  
+  - Playwright browser automation  
+  - DuckDuckGo search  
 
 Together, they form a **local, private AI automation stack** that mimics Copilot-like tool orchestration — all without relying on cloud APIs.
 
 ---
 
 ## 🧰 Project Structure
+
 mcp-server/
 ├── activate_env.sh # Activates the Python virtual environment
 ├── setup.sh # Sets up and configures Ollama + MCPHost
@@ -61,11 +66,13 @@ mcp-server/
 git clone https://github.com/alagammai/ollama-mcp-host-lab.git
 cd mcp-server
 
-## ⚙️ Run Order (Important)
 
-### 1️⃣ Activate environment
-```bash
+⚙️ Run Order (Important)
+1️⃣ Activate environment
+
 bash activate_env.sh
+
+This script creates and activates the virtual environment if it doesn’t exist.
 
 2️⃣ Run setup
 bash setup.sh
@@ -75,9 +82,13 @@ This installs dependencies, starts the Ollama server, installs MCPHost, and sets
 3️⃣ Start MCPHost
 mcpstart
 
+or run it quietly in the background:
+mcpquiet
+
 🧪 Example Prompts
 
 Once MCPHost is running, try:
+
 “List files in my connected filesystem.”
 “Show tables in my SQLite database.”
 “Search GitHub repositories for Model Context Protocol.”
